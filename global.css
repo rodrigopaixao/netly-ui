@@ -1,0 +1,92 @@
+/**
+ * @netly/ui — Global CSS
+ *
+ * Import this file once in your web app's entry point:
+ *   import "@netly/ui/global.css";
+ *
+ * For Tailwind v4 (Vite), add to your index.css:
+ *   @import "@netly/ui/global.css";
+ *
+ * For Expo / NativeWind, use the tailwind.config.js preset instead.
+ */
+
+@layer base {
+  :root {
+    /* ── Brand ──────────────────────────────── */
+    --netly-brand: #cffc00;
+    --netly-brand-dim: rgba(207, 252, 0, 0.08);
+    --netly-brand-subtle: rgba(207, 252, 0, 0.15);
+    --netly-brand-border: rgba(207, 252, 0, 0.2);
+    --netly-brand-border-strong: rgba(207, 252, 0, 0.3);
+    --netly-brand-on: #0a0a0a;
+
+    /* ── Olive ──────────────────────────────── */
+    --netly-olive: #2a3300;
+    --netly-olive-active: #4a5c00;
+
+    /* ── Surfaces ───────────────────────────── */
+    --netly-surface-base: #0a0a0a;
+    --netly-surface-raised: #0f0f0f;
+    --netly-surface: #131313;
+    --netly-surface-elevated: #1a1a1a;
+    --netly-surface-high: #1e1e1e;
+    --netly-border: #2a2a2a;
+
+    /* ── Text ───────────────────────────────── */
+    --netly-text: #ffffff;
+    --netly-text-secondary: #e8e8e8;
+    --netly-text-tertiary: #b0b0b0;
+    --netly-text-muted: #6b6b6b;
+    --netly-text-disabled: #484848;
+    --netly-text-inverse: #0a0a0a;
+
+    /* ── Semantic ───────────────────────────── */
+    --netly-success: #22c55e;
+    --netly-success-dim: rgba(34, 197, 94, 0.1);
+    --netly-warning: #f59e0b;
+    --netly-warning-dim: rgba(245, 158, 11, 0.1);
+    --netly-error: #ef4444;
+    --netly-error-dim: rgba(239, 68, 68, 0.1);
+    --netly-info: #3b82f6;
+    --netly-info-dim: rgba(59, 130, 246, 0.1);
+
+    /* ── Typography ─────────────────────────── */
+    --netly-font-display: "Inter", system-ui, sans-serif;
+    --netly-font-body: "Inter", system-ui, sans-serif;
+    --netly-font-mono: "JetBrains Mono", Menlo, monospace;
+
+    /* ── Radius ─────────────────────────────── */
+    --netly-radius-sm: 4px;
+    --netly-radius-md: 8px;
+    --netly-radius-lg: 12px;
+    --netly-radius-xl: 16px;
+    --netly-radius-2xl: 20px;
+    --netly-radius-3xl: 24px;
+
+    /* ── Elevation ──────────────────────────── */
+    --netly-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --netly-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --netly-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.6);
+    --netly-shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.7);
+    --netly-shadow-brand: 0 0 20px rgba(207, 252, 0, 0.15);
+  }
+}
+
+/* ── Utility classes ────────────────────────────────────────────────────────── */
+
+.netly-text-brand    { color: var(--netly-brand); }
+.netly-bg-surface    { background-color: var(--netly-surface); }
+.netly-bg-raised     { background-color: var(--netly-surface-raised); }
+.netly-border-brand  { border-color: var(--netly-brand-border); }
+
+/* ── Typing indicator animation ─────────────────────────────────────────────── */
+@keyframes netly-typing-dot {
+  0%, 60%, 100% { opacity: 0.2; transform: translateY(0); }
+  30%           { opacity: 1;   transform: translateY(-4px); }
+}
+
+.netly-typing-dot {
+  animation: netly-typing-dot 1.2s ease-in-out infinite;
+}
+.netly-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.netly-typing-dot:nth-child(3) { animation-delay: 0.4s; }
