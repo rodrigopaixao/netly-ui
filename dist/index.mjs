@@ -1034,5 +1034,186 @@ function NPriorityCard({
     }
   );
 }
+function NCategoryRail({ items, value, onChange, className = "" }) {
+  const [internal, setInternal] = useState(items[0]?.id ?? "");
+  const active = value ?? internal;
+  const handleSelect = (id) => {
+    setInternal(id);
+    onChange?.(id);
+  };
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      className: `flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory ${className}`,
+      style: { scrollbarWidth: "none" },
+      children: items.map((item) => {
+        const isActive = active === item.id;
+        const accent = item.color ?? colors.brand.DEFAULT;
+        return /* @__PURE__ */ jsxs(
+          "button",
+          {
+            onClick: () => handleSelect(item.id),
+            className: "snap-start shrink-0 w-44 h-44 rounded-2xl flex flex-col justify-between p-4 transition-all duration-200 text-left",
+            style: {
+              background: isActive ? colors.olive.active : colors.surface.elevated,
+              border: `2px solid ${isActive ? accent : colors.surface.highest}`
+            },
+            children: [
+              item.icon && /* @__PURE__ */ jsx(
+                "div",
+                {
+                  className: "w-12 h-12 rounded-full flex items-center justify-center",
+                  style: { background: accent + "33" },
+                  children: /* @__PURE__ */ jsx("span", { className: "material-symbols-rounded text-2xl", style: { color: accent }, children: item.icon })
+                }
+              ),
+              /* @__PURE__ */ jsx(
+                "p",
+                {
+                  className: "font-bold text-base leading-tight",
+                  style: { color: isActive ? accent : colors.text.primary },
+                  children: item.label
+                }
+              )
+            ]
+          },
+          item.id
+        );
+      })
+    }
+  );
+}
+function NOfferRail({ items, value, onChange, className = "" }) {
+  const [internal, setInternal] = useState(items[0]?.id ?? "");
+  const active = value ?? internal;
+  const handleSelect = (id) => {
+    setInternal(id);
+    onChange?.(id);
+  };
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      className: `flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory ${className}`,
+      style: { scrollbarWidth: "none" },
+      children: items.map((item) => {
+        const isActive = active === item.id;
+        const tagColor = item.tagColor ?? colors.brand.DEFAULT;
+        return /* @__PURE__ */ jsxs(
+          "button",
+          {
+            onClick: () => handleSelect(item.id),
+            className: "snap-start shrink-0 w-52 rounded-2xl flex flex-col gap-3 p-4 transition-all duration-200 text-left",
+            style: {
+              background: isActive ? colors.olive.active : colors.surface.elevated,
+              border: `2px solid ${isActive ? colors.brand.DEFAULT : colors.surface.highest}`
+            },
+            children: [
+              item.tag && /* @__PURE__ */ jsx(
+                "span",
+                {
+                  className: "self-start text-[10px] font-bold tracking-widest px-2 py-0.5 rounded-full",
+                  style: { color: tagColor, background: tagColor + "22" },
+                  children: item.tag
+                }
+              ),
+              /* @__PURE__ */ jsxs("div", { children: [
+                /* @__PURE__ */ jsx("p", { className: "font-black text-lg leading-tight", style: { color: colors.text.primary }, children: item.company }),
+                /* @__PURE__ */ jsx("p", { className: "text-xs", style: { color: colors.text.muted }, children: item.role })
+              ] }),
+              /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-1", children: [
+                /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-baseline", children: [
+                  /* @__PURE__ */ jsx("span", { className: "text-xs", style: { color: colors.text.muted }, children: "Base" }),
+                  /* @__PURE__ */ jsx("span", { className: "text-sm font-bold", style: { color: colors.text.primary }, children: item.base })
+                ] }),
+                /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-baseline", children: [
+                  /* @__PURE__ */ jsx("span", { className: "text-xs", style: { color: colors.text.muted }, children: "Total" }),
+                  /* @__PURE__ */ jsx(
+                    "span",
+                    {
+                      className: "text-sm font-black",
+                      style: { color: isActive ? colors.brand.DEFAULT : colors.text.primary },
+                      children: item.totalComp
+                    }
+                  )
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxs(
+                "div",
+                {
+                  className: "flex items-center gap-1 text-xs font-bold",
+                  style: { color: item.deltaPositive ? colors.semantic.success : colors.semantic.error },
+                  children: [
+                    /* @__PURE__ */ jsx("span", { className: "material-symbols-rounded text-sm", children: item.deltaPositive ? "arrow_upward" : "arrow_downward" }),
+                    item.delta
+                  ]
+                }
+              )
+            ]
+          },
+          item.id
+        );
+      })
+    }
+  );
+}
+function NStatChipRail({ items, value, onChange, className = "" }) {
+  const [internal, setInternal] = useState(items[0]?.id ?? "");
+  const active = value ?? internal;
+  const handleSelect = (id) => {
+    setInternal(id);
+    onChange?.(id);
+  };
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      className: `flex gap-3 overflow-x-auto pb-2 snap-x snap-mandatory ${className}`,
+      style: { scrollbarWidth: "none" },
+      children: items.map((chip) => {
+        const isActive = active === chip.id;
+        return /* @__PURE__ */ jsxs(
+          "button",
+          {
+            onClick: () => handleSelect(chip.id),
+            className: "snap-start shrink-0 rounded-xl px-4 py-3 flex flex-col gap-1 transition-all duration-200 text-left",
+            style: {
+              minWidth: 120,
+              background: isActive ? colors.olive.active : colors.surface.elevated,
+              border: `1.5px solid ${isActive ? colors.brand.DEFAULT : colors.surface.highest}`
+            },
+            children: [
+              /* @__PURE__ */ jsx(
+                "p",
+                {
+                  className: "text-[10px] font-bold tracking-widest uppercase",
+                  style: { color: colors.text.muted },
+                  children: chip.label
+                }
+              ),
+              /* @__PURE__ */ jsx(
+                "p",
+                {
+                  className: "text-lg font-black leading-none",
+                  style: { color: isActive ? colors.brand.DEFAULT : colors.text.primary },
+                  children: chip.value
+                }
+              ),
+              chip.delta && /* @__PURE__ */ jsx(
+                "p",
+                {
+                  className: "text-[11px] font-semibold",
+                  style: {
+                    color: chip.deltaPositive === true ? colors.semantic.success : chip.deltaPositive === false ? colors.semantic.error : colors.text.muted
+                  },
+                  children: chip.delta
+                }
+              )
+            ]
+          },
+          chip.id
+        );
+      })
+    }
+  );
+}
 
-export { NBadge, NBottomTab, NButton, NCard, NInput, NPriorityCard, NStatCard, NToggleRow, animation, colors, componentTokens, elevation, radius, spacing, tailwindTokens, tokens_default as tokens, typography };
+export { NBadge, NBottomTab, NButton, NCard, NCategoryRail, NInput, NOfferRail, NPriorityCard, NStatCard, NStatChipRail, NToggleRow, animation, colors, componentTokens, elevation, radius, spacing, tailwindTokens, tokens_default as tokens, typography };

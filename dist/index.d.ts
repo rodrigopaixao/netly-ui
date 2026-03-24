@@ -92,4 +92,55 @@ interface NPriorityCardProps {
 }
 declare function NPriorityCard({ rank, title, subtitle, value, valueDelta, deltaType, tag, tagVariant, highlighted, style, onClick, }: NPriorityCardProps): react_jsx_runtime.JSX.Element;
 
-export { NBadge, type NBadgeProps, type NBadgeVariant, NBottomTab, type NBottomTabProps, NButton, type NButtonProps, type NButtonSize, type NButtonVariant, NCard, type NCardProps, type NCardVariant, NInput, type NInputProps, type NInputType, NPriorityCard, type NPriorityCardProps, NStatCard, type NStatCardProps, type NTabItem, NToggleRow, type NToggleRowProps };
+/**
+ * @netly/ui — NHorizontalScroll (Web)
+ * Horizontally scrollable card rail with active/selected state.
+ * Three variants: NCategoryRail, NOfferRail, NStatChipRail
+ */
+interface NCategoryItem {
+    id: string;
+    label: string;
+    icon?: string;
+    color?: string;
+}
+interface NCategoryRailProps {
+    items: NCategoryItem[];
+    value?: string;
+    onChange?: (id: string) => void;
+    className?: string;
+}
+interface NOfferItem {
+    id: string;
+    company: string;
+    role: string;
+    base: string;
+    totalComp: string;
+    delta: string;
+    deltaPositive: boolean;
+    tag?: string;
+    tagColor?: string;
+}
+interface NOfferRailProps {
+    items: NOfferItem[];
+    value?: string;
+    onChange?: (id: string) => void;
+    className?: string;
+}
+interface NStatChip {
+    id: string;
+    label: string;
+    value: string;
+    delta?: string;
+    deltaPositive?: boolean | null;
+}
+interface NStatChipRailProps {
+    items: NStatChip[];
+    value?: string;
+    onChange?: (id: string) => void;
+    className?: string;
+}
+declare function NCategoryRail({ items, value, onChange, className }: NCategoryRailProps): react_jsx_runtime.JSX.Element;
+declare function NOfferRail({ items, value, onChange, className }: NOfferRailProps): react_jsx_runtime.JSX.Element;
+declare function NStatChipRail({ items, value, onChange, className }: NStatChipRailProps): react_jsx_runtime.JSX.Element;
+
+export { NBadge, type NBadgeProps, type NBadgeVariant, NBottomTab, type NBottomTabProps, NButton, type NButtonProps, type NButtonSize, type NButtonVariant, NCard, type NCardProps, type NCardVariant, type NCategoryItem, NCategoryRail, type NCategoryRailProps, NInput, type NInputProps, type NInputType, type NOfferItem, NOfferRail, type NOfferRailProps, NPriorityCard, type NPriorityCardProps, NStatCard, type NStatCardProps, type NStatChip, NStatChipRail, type NStatChipRailProps, type NTabItem, NToggleRow, type NToggleRowProps };

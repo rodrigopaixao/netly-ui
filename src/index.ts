@@ -38,6 +38,16 @@ export type { NBottomTabProps, NTabItem } from "./components/NBottomTab";
 export { NPriorityCard } from "./components/NPriorityCard";
 export type { NPriorityCardProps } from "./components/NPriorityCard";
 
+export { NCategoryRail, NOfferRail, NStatChipRail } from "./components/NHorizontalScroll";
+export type {
+  NCategoryItem,
+  NCategoryRailProps,
+  NOfferItem,
+  NOfferRailProps,
+  NStatChip,
+  NStatChipRailProps,
+} from "./components/NHorizontalScroll";
+
 // ── Tokens (re-exported for convenience) ─────────────────────────────────────
 export {
   colors,
