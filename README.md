@@ -289,6 +289,64 @@ className="rounded-netly-xl"
 
 ---
 
+## Troubleshooting
+
+### `Cannot find module '@netly/ui/tailwind'`
+
+This error occurs when Metro (or another bundler) does not support the `exports` field in `package.json`. There are two solutions:
+
+**Solution 1 — Use the root-level alias files (works with all Metro versions):**
+
+The package ships `tailwind.js` and `tokens.js` at the root as direct aliases. These resolve without `exports` support:
+
+```js
+// tailwind.config.js — use the root alias directly
+const netlyPreset = require("@netly/ui/tailwind"); // resolves to tailwind.js at root
+module.exports = { presets: [netlyPreset], content: ["./app/**/*.{ts,tsx}"] };
+```
+
+```tsx
+// tokens — use the root alias directly
+import { colors } from "@netly/ui/tokens"; // resolves to tokens.js at root
+```
+
+**Solution 2 — Enable package exports in Metro (Metro ≥ 0.72):**
+
+```js
+// metro.config.js
+const { getDefaultConfig } = require("expo/metro-config");
+const { withNativeWind } = require("nativewind/metro");
+
+const config = getDefaultConfig(__dirname);
+
+// Enable package.json exports field resolution
+config.resolver.unstable_enablePackageExports = true;
+
+module.exports = withNativeWind(config, { input: "./global.css" });
+```
+
+### `Cannot find module '@netly/ui/tokens'`
+
+Same root cause as above. Use `tokens.js` root alias (Solution 1) or enable `unstable_enablePackageExports` (Solution 2).
+
+### NativeWind styles not applying
+
+Make sure the `@netly/ui` source path is included in the `content` array of your `tailwind.config.js`:
+
+```js
+module.exports = {
+  presets: [require("@netly/ui/tailwind")],
+  content: [
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    // Include the library source so NativeWind can scan its class names
+    "./node_modules/@netly/ui/dist/**/*.{js,mjs}",
+  ],
+};
+```
+
+---
+
 ## License
 
 MIT © Netly Inc.

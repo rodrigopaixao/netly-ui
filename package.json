@@ -30,6 +30,8 @@
     "dist",
     "global.css",
     "tailwind.config.js",
+    "tailwind.js",
+    "tokens.js",
     "README.md"
   ],
   "sideEffects": ["./global.css"],
